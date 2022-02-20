@@ -1,32 +1,77 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
+   <TheHeader />
+   <main>
+     <router-view />
+   </main>
+   <TheFooter />
   </div>
 </template>
 
+<script>
+import TheHeader from "@/components/TheHeader.vue"
+import TheFooter from "@/components/TheFooter.vue"
+
+
+export default{
+  components:{
+    TheHeader,
+    TheFooter
+  }
+}
+</script>
+
+
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;500&display=swap');
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  font-family: 'Roboto',Arial, Helvetica, sans-serif;
+}
+
+ul{
+  list-style: none;
+}
+
+a{
+  color: rgb(46, 46, 46);
+  text-decoration: none;
+}
+
+img{
+  max-width: 100%;
+  display: block;
+}
+
+#app{
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+main{
+  flex: 1;
+}
+
+.btn{
+  display: block;
+  padding: 10px 30px;
+  background: rgb(90, 90, 90);
+  color: #fff;
+  border-radius: 4px;
   text-align: center;
-  color: #2c3e50;
+  font-size: 1rem;
+  box-shadow: 0 4px 8px rgba(30, 60, 90, 0.2);
+  transition: all 0.3s;
+  border: none;
+  cursor: pointer;
+}
+.btn:hover{
+  background:rgb(124, 124, 124);
 }
 
-#nav {
-  padding: 30px;
-}
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
 </style>
