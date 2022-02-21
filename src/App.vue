@@ -74,4 +74,19 @@ main{
   background:rgb(124, 124, 124);
 }
 
+input{
+  display: block;
+  width: 100%;
+  max-width: 700px;
+  padding: 10px 8px;
+  font-size: 1.1rem;
+  outline: none;
+  border: 2px solid rgb(124, 124, 124);
+  margin: 0 10px;
+  transition: .4s;
+}
+input:focus{
+  border: 2px solid rgb(46, 46, 46);
+}
+
 </style>

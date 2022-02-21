@@ -3,6 +3,7 @@
       <nav>
           <router-link to="/" class="logo">
             <img src="../assets/logo.svg" alt="">
+            <span>E-SHOP</span>
           </router-link>
           <router-link to="/login" class="btn">Vender</router-link>
       </nav>
@@ -29,5 +30,12 @@ nav{
     box-shadow: 0 2px 4px rgba(30, 60, 90, 0.1);
 }
 
+.logo{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.5rem;
+    color: #fff;
+}
 
 </style>
