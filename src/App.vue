@@ -55,6 +55,9 @@ img{
 
 main{
   flex: 1;
+  width: 100%;
+  max-width: 1400px;
+  margin: auto;
 }
 
 .btn{

@@ -23,6 +23,9 @@ header{
 }
 
 nav{
+    max-width: 100%;
+    width: 1400px;
+    margin: auto;
     display: flex;
     align-items: center;
     justify-content: space-between;
