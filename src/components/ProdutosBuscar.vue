@@ -1,6 +1,6 @@
 <template>
   <div class="buscar_container">
-      <input type="text" v-model="busca">
+      <input type="text" v-model="busca" placeholder="Buscar produtos...">
       <img src="../assets/search.svg" alt="" @click.prevent="buscarProdutos">
   </div>
 </template>
