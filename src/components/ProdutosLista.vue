@@ -7,7 +7,6 @@
           <p>{{produto.descricao}}</p>
           <button class="btn">Comprar</button>
       </div>
-      {{url}}
   </section>
 </template>
 
@@ -19,7 +18,7 @@ export default {
     data(){
         return{
             produtos:null,
-            produtoPorPagina: 9
+            produtoPorPagina: 8
         }
     },
     computed:{
@@ -59,6 +58,7 @@ section{
     margin-top: 40px;
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
     gap: 20px;
 }
 
@@ -68,7 +68,7 @@ section{
     align-items: center;
     width: 100%;
     max-width: 300px;
-    height: 400px;
+    height: 420px;
     border: 2px solid #000;
     padding: 10px;
 }
@@ -78,8 +78,10 @@ section{
 }
 
 .produtos img{
-    margin: 5px 0;
+    margin: 10px 0;
     height: 50%;
+    width: 100%;
+    max-width: 270px;
 }
 
 .produtos span{
@@ -88,7 +90,7 @@ section{
 
 .produtos p{
     text-align: center;
-    margin: 10px 0 20px 0;
+    margin: 10px 0 15px 0;
 }
 
 </style>

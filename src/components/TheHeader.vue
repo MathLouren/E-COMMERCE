@@ -5,7 +5,7 @@
             <img src="../assets/logo.svg" alt="">
             <span>E-SHOP</span>
           </router-link>
-          <router-link to="/login" class="btn">Vender</router-link>
+          <router-link to="/login" class="btn">Login</router-link>
       </nav>
   </header>
 </template>

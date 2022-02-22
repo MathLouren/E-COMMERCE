@@ -62,12 +62,12 @@ main{
 
 .btn{
   display: block;
-  padding: 15px 25px;
+  padding: 12px 25px;
   background: rgb(90, 90, 90);
   color: #fff;
   border-radius: 4px;
   text-align: center;
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   box-shadow: 0 4px 8px rgba(30, 60, 90, 0.2);
   transition: all 0.3s;
   border: none;
@@ -81,7 +81,7 @@ input{
   display: block;
   width: 100%;
   max-width: 700px;
-  padding: 10px 8px;
+  padding: 13px 10px;
   font-size: 1.1rem;
   outline: none;
   border: 2px solid rgb(124, 124, 124);
