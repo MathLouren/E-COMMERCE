@@ -1,16 +1,23 @@
 <template>
-  <section>
-      <div class="produtos" v-for="(produto,index) in produtos" :key="index">
-          <h2>{{produto.nome}}</h2>
-          <img :src="produto.img" alt="">
-          <span>{{produto.preco | numeroPreco}}</span>
-          <p>{{produto.descricao}}</p>
-          <button class="btn">Comprar</button>
-      </div>
-  </section>
+    <section> 
+        <div class="produtos_container">
+            <div class="produtos" v-for="(produto,index) in produtos" :key="index">
+                <h2>{{produto.nome}}</h2>
+                <img :src="produto.img" alt="">
+                <span>{{produto.preco | numeroPreco}}</span>
+                <p>{{produto.descricao}}</p>
+                <button class="btn">Comprar</button>
+            </div>
+        </div>
+            <div class="paginacao">
+                <ProdutosPaginar :produtosTotal="produtosTotal" 
+                :produtosPorPagina="produtosPorPagina"/>
+            </div>
+    </section>
 </template>
 
 <script>
+import ProdutosPaginar from "@/components/ProdutosPaginar.vue"
 import { api } from "@/services.js"
 import { serialize } from "@/helpers.js"
 
@@ -18,8 +25,12 @@ export default {
     data(){
         return{
             produtos:null,
-            produtoPorPagina: 8
+            produtoPorPagina: 8,
+            produtosTotal:0
         }
+    },
+    components:{
+        ProdutosPaginar
     },
     computed:{
         url(){
@@ -30,13 +41,13 @@ export default {
     methods:{
         getProdutos(){
             api.get(this.url).then((r)=>{
+                this.produtosTotal = Number(r.headers["x-total-count"]);
                 return this.produtos = r.data
             })
         }
     },
      filters:{
         numeroPreco(currentValue){
-            parseInt(currentValue)
             return currentValue.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'});
         }
     },
@@ -53,12 +64,11 @@ export default {
 
 <style scoped>
 
-section{
+.produtos_container{
     margin: auto;
     margin-top: 40px;
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
     gap: 20px;
 }
 
@@ -91,6 +101,12 @@ section{
 .produtos p{
     text-align: center;
     margin: 10px 0 15px 0;
+}
+
+.paginacao{
+   display: flex;
+   justify-content: center;
+   margin-top: 40px;
 }
 
 </style>

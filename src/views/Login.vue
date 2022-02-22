@@ -38,16 +38,16 @@ export default {
     display: flex;
     flex-direction: column;
     border-radius: 5px;
+    padding: 30px 20px;
 }
 
 .form h2{
-    margin: 10px auto 0 auto;
-    font-size: 2rem;
+    margin: 0 auto 30px auto;
+    font-size: 2.2rem;
     color: rgb(90, 90, 90);
 }
 
 form{
-    padding: 30px 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
