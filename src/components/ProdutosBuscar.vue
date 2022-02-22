@@ -1,13 +1,22 @@
 <template>
   <div class="buscar_container">
-      <input type="text">
-      <img src="../assets/search.svg" alt="">
+      <input type="text" v-model="busca">
+      <img src="../assets/search.svg" alt="" @click.prevent="buscarProdutos">
   </div>
 </template>
 
 <script>
 export default {
-
+    data(){
+        return{
+            busca:"",
+        }
+    },
+    methods:{
+        buscarProdutos(){
+            this.$router.push({query: {q:this.busca} })
+        }
+    }
 }
 </script>
 

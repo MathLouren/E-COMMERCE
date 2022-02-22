@@ -7,29 +7,43 @@
           <p>{{produto.descricao}}</p>
           <button class="btn">Comprar</button>
       </div>
+      {{url}}
   </section>
 </template>
 
 <script>
 import { api } from "@/services.js"
+import { serialize } from "@/helpers.js"
 
 export default {
     data(){
         return{
-            produtos:null
+            produtos:null,
+            produtoPorPagina: 9
         }
     },
-    filters:{
+    computed:{
+        url(){
+            const query = serialize(this.$route.query)
+            return `/produto?_limit=${this.produtoPorPagina}${query}`;
+        }
+    },
+    methods:{
+        getProdutos(){
+            api.get(this.url).then((r)=>{
+                return this.produtos = r.data
+            })
+        }
+    },
+     filters:{
         numeroPreco(currentValue){
             parseInt(currentValue)
             return currentValue.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'});
         }
     },
-    methods:{
-        getProdutos(){
-            api.get("/produto").then((r)=>{
-                return this.produtos = r.data
-            })
+    watch:{
+        url(){
+            this.getProdutos()
         }
     },
     created(){
