@@ -62,12 +62,12 @@ main{
 
 .btn{
   display: block;
-  padding: 10px 30px;
+  padding: 15px 25px;
   background: rgb(90, 90, 90);
   color: #fff;
   border-radius: 4px;
   text-align: center;
-  font-size: 1rem;
+  font-size: 1.1rem;
   box-shadow: 0 4px 8px rgba(30, 60, 90, 0.2);
   transition: all 0.3s;
   border: none;

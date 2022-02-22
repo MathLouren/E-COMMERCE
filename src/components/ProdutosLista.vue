@@ -11,6 +11,8 @@
 </template>
 
 <script>
+import { api } from "@/services.js"
+
 export default {
     data(){
         return{
@@ -25,8 +27,8 @@ export default {
     },
     methods:{
         getProdutos(){
-            fetch("http://localhost:3000/produto").then( r => r.json()).then((r)=>{
-                this.produtos = r
+            api.get("/produto").then((r)=>{
+                return this.produtos = r.data
             })
         }
     },
@@ -71,7 +73,8 @@ section{
 }
 
 .produtos p{
-    margin: 10px 0;
+    text-align: center;
+    margin: 10px 0 20px 0;
 }
 
 </style>
