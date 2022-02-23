@@ -1,5 +1,7 @@
 <template>
-    <section> 
+<section>
+    <transition mode="out-in">
+    <div v-if="produtos && produtos.length" key="produtos">
         <div class="produtos_container">
             <div class="produtos" v-for="(produto,index) in produtos" :key="index">
                 <h2>{{produto.nome}}</h2>
@@ -13,6 +15,14 @@
                 <ProdutosPaginar :produtosTotal="produtosTotal" 
                 :produtosPorPagina="produtosPorPagina"/>
             </div>
+    </div>
+    <div v-else-if="produtos && produtos.length === 0" key="sem_resultado">
+        <p class="sem_resultados">Busca sem resultados.</p>
+    </div>
+        <div v-else key="carrengando">
+            <PaginaCarregando />
+        </div>
+        </transition>
     </section>
 </template>
 
@@ -40,6 +50,7 @@ export default {
     },
     methods:{
         getProdutos(){
+            this.produtos = null;
             api.get(this.url).then((r)=>{
                 this.produtosTotal = Number(r.headers["x-total-count"]);
                 return this.produtos = r.data
