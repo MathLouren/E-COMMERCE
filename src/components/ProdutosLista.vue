@@ -65,9 +65,11 @@ export default {
 <style scoped>
 
 .produtos_container{
+    min-height: 100%;
     margin: auto;
     margin-top: 40px;
     display: flex;
+    justify-content: center;
     flex-wrap: wrap;
     gap: 20px;
 }
