@@ -25,7 +25,7 @@ export default {
     data(){
         return{
             produtos:null,
-            produtoPorPagina: 8,
+            produtosPorPagina: 8,
             produtosTotal:0
         }
     },
@@ -35,7 +35,7 @@ export default {
     computed:{
         url(){
             const query = serialize(this.$route.query)
-            return `/produto?_limit=${this.produtoPorPagina}${query}`;
+            return `/produto?_limit=${this.produtosPorPagina}${query}`;
         }
     },
     methods:{
