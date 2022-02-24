@@ -8,8 +8,7 @@
                   <input type="password" placeholder="Senha">
                   <button class="btn">Entrar</button>
                   <button class="btn">Novo? Criar conta</button>
-              </form>
-              
+              </form>   
           </div>
       </div>
   </section>
