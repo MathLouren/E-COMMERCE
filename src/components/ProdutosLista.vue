@@ -59,11 +59,6 @@ export default {
             })
         }
     },
-     filters:{
-        numeroPreco(currentValue){
-            return currentValue.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'});
-        }
-    },
     watch:{
         url(){
             this.getProdutos()
