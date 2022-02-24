@@ -4,13 +4,11 @@
     <div v-if="produtos && produtos.length" key="produtos">
         <div class="produtos_container">
             <div class="produtos" v-for="(produto,index) in produtos" :key="index">
-                <router-link :to="{name: 'produto', params:{id:produto.id}}">
                     <h2>{{produto.nome}}</h2>
                     <img :src="produto.img" alt="">
                     <span>{{produto.preco | numeroPreco}}</span>
                     <p>{{produto.descricao}}</p>
                     <button class="btn">Comprar</button>
-                </router-link>
             </div>
         </div>
             <div class="paginacao">
@@ -19,7 +17,7 @@
             </div>
     </div>
     <div v-else-if="produtos && produtos.length === 0" key="sem_resultado">
-        <p class="sem_resultados">Busca sem resultados.</p>
+        <p class="sem_resultados">Busca sem resultados. Tente outro nome 😥</p>
     </div>
         <div v-else key="carrengando">
             <PaginaCarregando />
@@ -122,6 +120,13 @@ export default {
    display: flex;
    justify-content: center;
    margin-top: 40px;
+}
+
+.sem_resultados{
+    width: 100%;
+    text-align: center;
+    font-size: 1.3rem;
+    margin-top: 40px;
 }
 
 </style>
