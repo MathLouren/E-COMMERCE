@@ -4,11 +4,13 @@
     <div v-if="produtos && produtos.length" key="produtos">
         <div class="produtos_container">
             <div class="produtos" v-for="(produto,index) in produtos" :key="index">
-                    <h2>{{produto.nome}}</h2>
-                    <img :src="produto.img" alt="">
-                    <span>{{produto.preco | numeroPreco}}</span>
-                    <p>{{produto.descricao}}</p>
-                    <button class="btn">Comprar</button>
+                    <router-link :to="{name: 'produto', params: {id: produto.id}}">
+                        <h2>{{produto.nome}}</h2>
+                        <img :src="produto.img" alt="">
+                        <span>{{produto.preco | numeroPreco}}</span>
+                        <p>{{produto.descricao}}</p>
+                        <button class="btn">Adicionar ao carrinho</button>
+                    </router-link>
             </div>
         </div>
             <div class="paginacao">
@@ -35,7 +37,7 @@ export default {
     data(){
         return{
             produtos:null,
-            produtosPorPagina: 8,
+            produtosPorPagina: 6,
             produtosTotal:0
         }
     },
@@ -76,13 +78,14 @@ export default {
 <style scoped>
 
 .produtos_container{
+    max-width: 1000px;
     min-height: 100%;
     margin: auto;
     margin-top: 40px;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    gap: 20px;
+    gap: 30px;
 }
 
 .produtos{
@@ -92,28 +95,43 @@ export default {
     width: 100%;
     max-width: 300px;
     height: 420px;
-    border: 2px solid #000;
+    border: 3px solid rgb(90, 90, 90);
     padding: 10px;
+    border-radius: 5px;
+    transition: 0.3s;
+    box-shadow: 6px 6px 6px rgba(0, 0, 0, 0.2);
+}
+.produtos:hover{
+    transform: scale(1.1);
 }
 
 .produtos h2{
-    font-size: 1.7rem;
+    text-align: center;
+    font-size: 1.9rem;
+    margin:  0 0 5px 0;
 }
 
 .produtos img{
     margin: 10px 0;
-    height: 50%;
+    height: 100%;
     width: 100%;
     max-width: 270px;
 }
 
 .produtos span{
+    display: block;
+    text-align: center;
     font-size: 1.5rem;
 }
 
 .produtos p{
     text-align: center;
     margin: 10px 0 15px 0;
+}
+
+button{
+    display: block;
+    margin: auto;
 }
 
 .paginacao{

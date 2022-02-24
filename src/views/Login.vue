@@ -31,7 +31,7 @@ export default {
 }
 
 .form{
-    border: 3px solid rgb(46, 46, 46);
+    border: 4px solid rgb(46, 46, 46);
     width: 100%;
     max-width: 470px;
     display: flex;
