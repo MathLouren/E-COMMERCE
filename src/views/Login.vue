@@ -4,9 +4,9 @@
           <div class="form">
               <h2>Login</h2>
               <form>
-                  <input type="text" placeholder="Email">
-                  <input type="password" placeholder="Senha">
-                  <button class="btn">Entrar</button>
+                  <input type="text" placeholder="Email" v-model="email">
+                  <input type="password" placeholder="Senha" v-model="senha">
+                  <button class="btn" @click.prevent="logar">Entrar</button>
                   <button class="btn">Novo? Criar conta</button>
               </form>   
           </div>
@@ -16,7 +16,17 @@
 
 <script>
 export default {
-
+    data(){
+        return{
+            email:"",
+            senha:""
+        }
+    },
+    methods:{
+        logar(){
+            this.$store.dispatch("getUsuario", this.email)
+        }
+    }
 }
 </script>
 
