@@ -5,7 +5,7 @@
             <img src="../assets/logo.svg" alt="">
             <span>E-SHOP</span>
           </router-link>
-          <router-link v-if="$store.state.login" to="/login" class="btn">{{nome}}</router-link>
+          <router-link v-if="$store.state.login" to="/usuario" class="btn">{{nome}}</router-link>
           <router-link to="/login" class="btn" v-else>Login</router-link>
       </nav>
   </header>
