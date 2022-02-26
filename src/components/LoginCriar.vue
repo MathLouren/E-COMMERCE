@@ -1,8 +1,9 @@
 <template>
   <section>
-      <h2>Crie sua conta</h2>
-      <button v-if="!criar" @click="criar = true" class="btn">Novo? Criar conta</button>
-      <UsuarioForm v-else/>
+        <transition mode="out-in">
+            <button v-if="!criar" @click="criar = true" class="btn">Novo? Criar conta</button>
+            <UsuarioForm v-else/>
+        </transition>
   </section>
 </template>
 
@@ -22,6 +23,11 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+
+.btn{
+    width: 100%;
+    max-width: 300px;
+}
 
 </style>
