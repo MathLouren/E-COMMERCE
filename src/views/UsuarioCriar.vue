@@ -9,7 +9,7 @@
       <input type="text" placeholder="Rua" disabled v-model="rua">
       <input type="text" placeholder="Cidade" disabled v-model="cidade">
       <input type="text" placeholder="Estado" disabled v-model="estado">
-      <input type="text" placeholder="Numero da residencia" v-model="nmr">
+      <input type="text" placeholder="Número da residência" v-model="nmr">
       <input type="password" placeholder="Senha">
       <input type="password" placeholder="Confirme sua senha" v-model="senha">
       <button class="btn">Criar conta</button>
@@ -20,20 +20,16 @@
 
 <script>
 /* import {getCep} from "@/services.js" */
+import { mapFields} from "@/helpers.js"
 
 export default {
   name:"UsuarioForm",
-  data(){
-    return{
-      nome:"",
-      email:"",
-      cep:"",
-      rua:"",
-      cidade:"",
-      estado:"",
-      nmr:"",
-      senha:""
-    }
+  computed:{
+    ...mapFields({
+      fields: ["nome","email","cep","rua","bairro","cidade","estado","nmr","senha"],
+      base: "usuario",
+      mutation:"UPDATE_USUARIO"
+    })
   },
   methods:{
     /* pucharCep(){

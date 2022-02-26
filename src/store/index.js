@@ -18,7 +18,8 @@ export default new Vuex.Store({
       numero:"",
       bairro:"",
       cidade:"",
-      estado:""
+      estado:"",
+      nmr:""
     }
   },
   mutations: {
