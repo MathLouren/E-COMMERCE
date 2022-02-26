@@ -44,6 +44,12 @@ a{
   text-decoration: none;
 }
 
+h2{
+  margin: 0 auto 30px auto;
+  font-size: 2.2rem;
+  color: rgb(90, 90, 90);
+}
+
 img{
   max-width: 100%;
   display: block;
@@ -111,5 +117,7 @@ input:focus{
 .v-leave-active{
   transition: all 0.3s;
 }
+
+
 
 </style>
