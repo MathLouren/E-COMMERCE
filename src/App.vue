@@ -70,12 +70,12 @@ main{
 
 .btn{
   display: block;
-  padding: 12px 25px;
+  padding: 13px 20px;
   background: rgb(90, 90, 90);
   color: #fff;
   border-radius: 4px;
   text-align: center;
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   box-shadow: 0 4px 8px rgba(30, 60, 90, 0.2);
   transition: all 0.3s;
   border: none;
@@ -116,6 +116,13 @@ input:focus{
 .v-enter-active,
 .v-leave-active{
   transition: all 0.3s;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
 }
 
 

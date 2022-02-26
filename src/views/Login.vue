@@ -46,6 +46,10 @@ export default {
     align-items: center;
 }
 
+.check{
+    display: inline;
+}
+
 .form{
     border: 4px solid rgb(46, 46, 46);
     width: 100%;
@@ -54,17 +58,6 @@ export default {
     flex-direction: column;
     border-radius: 5px;
     padding: 30px 20px;
-}
-
-form{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 15px;
-}
-
-.check{
-    display: inline;
 }
 
 </style>
