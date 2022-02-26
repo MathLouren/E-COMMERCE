@@ -12,7 +12,7 @@
       <input type="text" placeholder="Número da residência" v-model="nmr">
       <input type="password" placeholder="Senha">
       <input type="password" placeholder="Confirme sua senha" v-model="senha">
-      <button class="btn">Criar conta</button>
+      <button class="btn" @click.prevent="criarUsuario">Criar conta</button>
     </form>
   </div>
 </section>
@@ -41,6 +41,15 @@ export default {
           this.cidade = r.data.localidade;
           this.estado = r.data.uf;
         })
+      }
+    },
+    async criarUsuario(){
+      try{
+        await this.$store.dispatch("criarUsuario", this.$store.state.usuario)
+        await this.$store.dispatch("getUsuario", this.$store.state.usuario.email);
+        this.$router.push({ name:"usuario" });
+      } catch(error){
+        console.log(error)
       }
     } 
   }
