@@ -3,14 +3,15 @@
   <div class="form">
     <h2>Crie sua conta</h2>
     <form>
-      <input type="text" placeholder="Nome Completo">
-      <input type="email" placeholder="Email">
-      <input type="text" placeholder="Cep">
-      <input type="text" placeholder="Rua" disabled>
-      <input type="text" placeholder="Cidade" disabled>
-      <input type="text" placeholder="Estado" disabled>
+      <input type="text" placeholder="Nome Completo" v-model="nome">
+      <input type="email" placeholder="Email" v-model="email">
+      <input type="text" placeholder="Cep" @keyup="pucharCep" v-model="cep">
+      <input type="text" placeholder="Rua" disabled v-model="rua">
+      <input type="text" placeholder="Cidade" disabled v-model="cidade">
+      <input type="text" placeholder="Estado" disabled v-model="estado">
+      <input type="text" placeholder="Numero da residencia" v-model="nmr">
       <input type="password" placeholder="Senha">
-      <input type="password" placeholder="Confirme sua senha">
+      <input type="password" placeholder="Confirme sua senha" v-model="senha">
       <button class="btn">Criar conta</button>
     </form>
   </div>
@@ -18,8 +19,35 @@
 </template>
 
 <script>
+/* import {getCep} from "@/services.js" */
+
 export default {
-  name:"UsuarioForm"
+  name:"UsuarioForm",
+  data(){
+    return{
+      nome:"",
+      email:"",
+      cep:"",
+      rua:"",
+      cidade:"",
+      estado:"",
+      nmr:"",
+      senha:""
+    }
+  },
+  methods:{
+    /* pucharCep(){
+      const cep = this.cep.replace(/\D/g, "");
+      if(cep.lenght = 8){
+        getCep(cep.then(r =>{
+          this.rua = r.data.logradouro;
+          this.bairro = r.data.bairro;
+          this.cidade = r.data.localidade;
+          this.estado = r.data.uf;
+        }))
+      }
+    } */
+  }
 }
 </script>
 
