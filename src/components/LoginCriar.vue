@@ -1,8 +1,8 @@
 <template>
   <section>
-        <transition mode="out-in">
             <button v-if="!criar" @click="criar = true" class="btn">Novo? Criar conta</button>
-            <UsuarioForm v-else/>
+        <transition mode="out-in">    
+            <UsuarioForm v-if="criar"/>
         </transition>
   </section>
 </template>
