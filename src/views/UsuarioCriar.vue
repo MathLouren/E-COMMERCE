@@ -5,7 +5,7 @@
     <form>
       <input type="text" placeholder="Nome Completo" v-model="nome">
       <input type="email" placeholder="Email" v-model="email">
-      <input type="text" placeholder="Cep" @keyup="pucharCep" v-model="cep">
+      <input type="text" placeholder="Cep"  v-model="cep">
       <input type="text" placeholder="Rua" disabled v-model="rua">
       <input type="text" placeholder="Cidade" disabled v-model="cidade">
       <input type="text" placeholder="Estado" disabled v-model="estado">
