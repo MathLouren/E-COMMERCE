@@ -4,6 +4,7 @@ import Home from "../views/Home.vue"
 import Login from "../views/Login.vue"
 import Produto from "../views/Produto.vue"
 import Usuario from "../views/usuario/Usuario.vue"
+import UsuarioCriar from "../views/UsuarioCriar.vue"
 
 
 Vue.use(VueRouter)
@@ -30,6 +31,11 @@ const routes = [
     name:"usuario",
     component: Usuario
   },
+  {
+    path:"/registrar",
+    name:"resgistrar",
+    component: UsuarioCriar
+  }
 ]
 
 const router = new VueRouter({

@@ -7,7 +7,7 @@
                   <input type="text" placeholder="Email" v-model="email">
                   <input type="password" placeholder="Senha" v-model="senha">
                   <button class="btn" @click.prevent="logar">Entrar</button>
-                  <LoginCriar />
+                  <router-link class="btn" to="/registrar">Novo? Crie sua conta</router-link>
               </form>   
           </div>
       </div>
@@ -15,11 +15,11 @@
 </template>
 
 <script>
-import LoginCriar from "@/components/LoginCriar.vue"
+
 
 export default {
     components:{
-        LoginCriar
+       
     },
     data(){
         return{
@@ -39,15 +39,11 @@ export default {
 <style scoped>
 
 .form_container{
-    height: 80vh;
+    height: 90vh;
     width: 100%;
     display: flex;
-    justify-content: center;
     align-items: center;
-}
-
-.check{
-    display: inline;
+    justify-content: center;
 }
 
 .form{
@@ -58,6 +54,8 @@ export default {
     flex-direction: column;
     border-radius: 5px;
     padding: 30px 20px;
+    margin-top: 20px;
+    box-shadow: 0 4px 8px rgba(30, 60, 90, 0.2);
 }
 
 </style>

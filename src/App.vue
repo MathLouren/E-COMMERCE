@@ -75,8 +75,8 @@ main{
   color: #fff;
   border-radius: 4px;
   text-align: center;
-  font-size: 1.3rem;
-  box-shadow: 0 4px 8px rgba(30, 60, 90, 0.2);
+  font-size: 1.1rem;
+  box-shadow: 0 4px 8px rgba(30, 60, 90, 0.4);
   transition: all 0.3s;
   border: none;
   cursor: pointer;
@@ -93,6 +93,8 @@ input{
   font-size: 1.1rem;
   outline: none;
   border: 2px solid rgb(124, 124, 124);
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(30, 60, 90, 0.1);
   margin: 0 10px;
   transition: .4s;
 }

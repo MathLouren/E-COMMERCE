@@ -108,7 +108,7 @@ export default {
 
 .produtos img{
     margin: 10px 0;
-    height: 100%;
+    height: 95%;
     width: 100%;
     max-width: 270px;
 }

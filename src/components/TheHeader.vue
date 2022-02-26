@@ -6,7 +6,7 @@
             <span>E-SHOP</span>
           </router-link>
           <router-link v-if="$store.state.login" to="/usuario" class="btn">{{nome}}</router-link>
-          <router-link to="/login" class="btn" v-else>Login</router-link>
+          <router-link to="/login" class="btn" v-else>Login / Vender</router-link>
       </nav>
   </header>
 </template>
