@@ -5,7 +5,7 @@
     <form>
       <input type="text" placeholder="Nome Completo" v-model="nome">
       <input type="email" placeholder="Email" v-model="email">
-      <input type="text" placeholder="Cep"  v-model="cep">
+      <input type="text" placeholder="Cep"  v-model="cep" @keyup="pucharCep">
       <input type="text" placeholder="Rua" disabled v-model="rua">
       <input type="text" placeholder="Cidade" disabled v-model="cidade">
       <input type="text" placeholder="Estado" disabled v-model="estado">
@@ -19,7 +19,7 @@
 </template>
 
 <script>
-/* import {getCep} from "@/services.js" */
+import { getCep } from "@/services.js"
 import { mapFields} from "@/helpers.js"
 
 export default {
@@ -32,17 +32,17 @@ export default {
     })
   },
   methods:{
-    /* pucharCep(){
+     pucharCep(){
       const cep = this.cep.replace(/\D/g, "");
-      if(cep.lenght = 8){
-        getCep(cep.then(r =>{
+      if(cep.length === 8){
+        getCep(cep).then(r =>{
           this.rua = r.data.logradouro;
           this.bairro = r.data.bairro;
           this.cidade = r.data.localidade;
           this.estado = r.data.uf;
-        }))
+        })
       }
-    } */
+    } 
   }
 }
 </script>
