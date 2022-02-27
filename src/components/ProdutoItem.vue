@@ -1,15 +1,15 @@
 <template>
  <div class="produto" v-if="produto">
-     <router-link :to="{name: 'produto', params: {id: produto.id}}">
-         <img v-if="produto.fotos" :src="produto.fotos[0].src" 
-         :alt="produto.fotos[0].titulo">
-         <p>Ver produto</p>
-     </router-link>
      <div class="info">
          <p class="titulo">{{produto.nome}}</p>
          <p class="preco">{{produto.preco | numeroPreco}}</p>
      </div>
      <slot></slot>
+     <router-link :to="{name: 'produto', params: {id: produto.id}}" class="btn">
+        <img v-if="produto.fotos" :src="produto.fotos[0].src" 
+        :alt="produto.fotos[0].titulo" class="produto-img">
+        <p>Ver produto</p>
+    </router-link>
  </div>
 </template>
 
@@ -22,9 +22,15 @@ export default {
 
 <style scoped>
 
+.btn{
+    margin: 15px 0;
+}
+
 .produto{
-    padding: 10px;
-    border-bottom: 1px solid #ccc;
+    border-top: 1px solid #ccc;
+    transition: 0.4s;
+    margin: 5px 0;
+    padding: 10px 0;
 }
 
 .titulo{
@@ -33,7 +39,13 @@ export default {
 
 .preco{
     font-size: 1.5rem;
-    margin: 5px 0;
+    margin: 7px 0;
+}
+
+.produto-img{
+    border-radius: 4px;
+    overflow: hidden;
+    height: 100px;
 }
 
 </style>
