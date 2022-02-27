@@ -51,7 +51,7 @@ li{
 }
 
 .sidenav{
-  margin: 0 5px;
+  margin: 0 30px 0 0;
 }
 
 .sidenav a.router-link-exact-active{
