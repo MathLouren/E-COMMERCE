@@ -7,7 +7,7 @@
       <li v-for="(produto, index) in usuario_produtos" :key="index">
         <ProdutoItem :produto="produto">
           <p>{{produto.descricao}}</p>
-          <button class="deletar" @click="deletarProduto(produto.id)">Deletar</button>
+          <button class="deletar btn" @click="deletarProduto(produto.id)">Deletar produto</button>
         </ProdutoItem>
       </li>
     </transition-group>
@@ -32,7 +32,7 @@ export default {
   },
   methods:{
     ...mapActions(["getUsuarioProdutos"]),
-    deletar(id){
+    deletarProduto(id){
       const confirmar = window.confirm("Deseja remover este produto?")
       if(confirmar){
         api.delete(`/produto/${id}`).then(() =>{
@@ -74,7 +74,7 @@ h2{
 }
 
 .deletar{
-  position: absolute;
+  margin: 20px auto;
 }
 
 </style>
