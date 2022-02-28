@@ -47,9 +47,9 @@ export default {
 }
 
 .form{
-    border: 4px solid rgb(46, 46, 46);
+    border: 2px solid rgb(46, 46, 46);
     width: 100%;
-    max-width: 470px;
+    max-width: 420px;
     display: flex;
     flex-direction: column;
     border-radius: 5px;

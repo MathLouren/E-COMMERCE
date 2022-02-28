@@ -88,7 +88,7 @@ main{
 input{
   display: block;
   width: 100%;
-  max-width: 700px;
+  max-width: 400px;
   padding: 13px 10px;
   font-size: 1.1rem;
   outline: none;
