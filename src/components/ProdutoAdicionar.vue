@@ -45,7 +45,7 @@ export default {
 
 <style scoped>
 
-.adicionar-produto{
+.adicionar_produto{
   display: grid;
   grid-template-columns: 100px 1fr;
   align-items: center;
@@ -54,5 +54,13 @@ export default {
 
 .btn{
   grid-column: 2;
+}
+
+label{
+  font-size: 1.2rem;
+}
+
+textarea{
+  padding: 5px;
 }
 </style>
