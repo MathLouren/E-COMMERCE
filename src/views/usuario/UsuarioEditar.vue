@@ -42,7 +42,7 @@
             <input type="text" name="senha" v-model="senhaAtual" placeholder="Senha atual">
             <input type="text" name="senha" v-model="novaSenha" placeholder="Nova Senha">
             <input type="text" name="senha" v-model="novaSenha2" placeholder="Repita a nova senha">
-            <button class="btn">Editar senha</button>
+            <button class="btn" @click="editarSenha">Editar senha</button>
           </div>
         </div>
       </div>
@@ -74,6 +74,13 @@ export default {
     })
   },
   methods:{
+    editarSenha(){
+      if(this.senhaAtual === this.senha){
+        this.atualizarUsuario()
+      }else{
+        console.log('senha errada')
+      }
+    },
     atualizarUsuario(){
       api.put(`/usuario/${this.$store.state.usuario.id}`, this.$store.state.usuario).then(()=>{
         this.$store.dispatch("getUsuario");
