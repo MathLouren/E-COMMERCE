@@ -62,7 +62,7 @@ li{
 .router_view{
   width: 100%;
   max-width: 900px;
-  margin-right: 10px;
+  margin-left: 20px;
 }
 
 </style>

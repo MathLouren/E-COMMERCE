@@ -2,12 +2,27 @@
   <section class="usuario_editar">
     <h2>Editar usuario</h2>
     <form>
-      <label for="nome">Nome</label>
-      <input type="text" name="nome" v-model="nome">
-      <label for="email">Email</label>
-      <input type="email" name="email" v-model="email">
-      <label for="password">Senha</label>
-      <input type="password" name="password" v-model="senha">
+      <div class="container_inputs">
+        <label for="nome">Nome</label>
+        <div class="edit">
+          <input type="text" name="nome" v-model="nome" disabled>
+          <img src="./imgs/settings.svg">
+        </div>
+      </div>
+      <div class="container_inputs">
+        <label for="email">Email</label>
+        <div class="edit">
+          <input type="text" name="email" v-model="email" disabled>
+          <img src="./imgs/settings.svg">
+        </div>
+      </div>
+      <div class="container_inputs">
+        <label for="password">Senha</label>
+        <div class="edit">
+          <input type="password" name="password" v-model="senha" disabled>
+          <img src="./imgs/settings.svg">
+        </div>
+      </div>
     </form>
   </section>
 </template>
@@ -36,17 +51,34 @@ export default {
 form{
   width: 100%;
   max-width: 600px;
+}
+
+.container_inputs{
+  width: 100%;
+  gap: 10px;
   display: grid;
-  grid-template-columns: 50px 1fr;
+  grid-template-columns: 60px 1fr;
   align-items: center;
 }
 
 label{
-  font-size: 1.1rem;
+  font-size: 1.2rem;
 }
 
 input{
   grid-column: 2;
   margin: 5px 0;
 }
+
+.edit{
+  display: flex;
+}
+
+.edit img{
+  margin-left: -36px;
+  cursor: pointer;
+}
+
+
+
 </style>
