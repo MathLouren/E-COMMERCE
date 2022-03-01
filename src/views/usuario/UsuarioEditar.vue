@@ -39,7 +39,9 @@
         <div class="edit_container" v-if="edit_senha">
           <div class="edit_info">
             <h2>Editar senha</h2>
-            <input type="text" name="senha" v-model="senha">
+            <input type="text" name="senha" v-model="senhaAtual" placeholder="Senha atual">
+            <input type="text" name="senha" v-model="novaSenha" placeholder="Nova Senha">
+            <input type="text" name="senha" v-model="novaSenha2" placeholder="Repita a nova senha">
             <button class="btn">Editar senha</button>
           </div>
         </div>
@@ -58,7 +60,10 @@ export default {
     return{
       edit_name:false,
       edit_email:false,
-      edit_senha:false
+      edit_senha:false,
+      senhaAtual:null,
+      novaSenha:null,
+      novaSenha2:null
     }
   },
   computed:{
