@@ -20,10 +20,12 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 
 input{
     padding-right: 40px;
+    width: 100%;
+    max-width: 900px;
 }
 
 .buscar_container{

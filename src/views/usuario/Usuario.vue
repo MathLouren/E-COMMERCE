@@ -19,7 +19,7 @@
         </li>
       </ul>
     </nav>
-    <div>
+    <div class="router_view">
       <transition mode="out-in">
       <router-view></router-view>
     </transition>
@@ -51,12 +51,18 @@ li{
 }
 
 .sidenav{
-  margin: 0 30px 0 0;
+  margin: 0 15px;
 }
 
 .sidenav a.router-link-exact-active{
   background-color: rgb(46, 46, 46);
   color: #fff;
+}
+
+.router_view{
+  width: 100%;
+  max-width: 900px;
+  margin-right: 10px;
 }
 
 </style>
