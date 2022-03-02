@@ -4,20 +4,20 @@
     <h2>Crie sua conta</h2>
     <form>
       <input type="text" placeholder="Nome Completo" name="nome" v-model="$v.nome.$model" :class="{error: $v.nome.$error}">
-      <span v-if="true">Este campo é requerido</span>
-      <input type="email" placeholder="Email" v-model="email" :class="{error: $v.nome.$error}">
-      <span v-if="true">Este campo é requerido</span>
-      <input type="text" placeholder="Cep"  v-model="cep" @keyup="pucharCep" :class="{error: $v.nome.$error}">
-      <span v-if="true">Este campo é requerido</span>
-      <input type="text" placeholder="Rua" disabled v-model="rua">
+      <span v-if="$v.nome.$error">Este campo é requerido</span>
+      <input type="email" placeholder="Email" v-model="$v.email.$model" :class="{error: $v.email.$error}">
+      <span v-if="$v.email.$error">Email inválido</span>
+      <input type="text" placeholder="Cep"  v-model="$v.cep.$model" @keyup="pucharCep" :class="{error: $v.cep.$error}">
+      <span v-if="$v.cep.$error">Este campo é requerido</span>
+      <input ty-pe="text" placeholder="Rua" disabled v-model="rua">
       <input type="text" placeholder="Cidade" disabled v-model="cidade">
       <input type="text" placeholder="Estado" disabled v-model="estado">
-      <input type="text" placeholder="Número da residência" v-model="nmr" :class="{error: $v.nome.$error}">
-      <span v-if="true">Este campo é requerido</span>
-      <input type="password" placeholder="Senha" :class="{error: $v.nome.$error}">
-      <span v-if="true">Este campo é requerido</span>
-      <input type="password" placeholder="Confirme sua senha" v-model="senha" :class="{error: $v.nome.$error}">
-      <span v-if="true">Este campo é requerido</span>
+      <input type="text" placeholder="Número da residência" v-model="$v.nmr.$model" :class="{error: $v.nmr.$error}">
+      <span v-if="$v.nmr.$error">Este campo é requerido</span>
+      <input type="password" placeholder="Senha">
+      <span v-if="false">Este campo é requerido</span>
+      <input type="password" placeholder="Confirme sua senha" v-model="$v.senha.$model" :class="{error: $v.senha.$error}">
+      <span v-if="$v.senha.$error">Este campo é requerido</span>
       <button class="btn" @click.prevent="criarUsuario">Criar conta</button>
     </form>
   </div>
@@ -40,6 +40,10 @@ export default {
   },
   validations:{
       nome: { required },
+      email: { required },
+      cep: { required },
+      nmr: { required },
+      senha: { required },
   },
   methods:{
      pucharCep(){
@@ -76,7 +80,7 @@ section{
 
 h2{
   text-align: center;
-  margin: 5px 0;
+  margin: 0px 0 20px 0;
 }
 
 .form{
@@ -86,7 +90,7 @@ h2{
     display: flex;
     flex-direction: column;
     border-radius: 5px;
-    padding: 30px 20px;
+    padding: 10px 20px;
     margin-top: 20px;
     box-shadow: 0 4px 8px rgba(30, 60, 90, 0.2);
 }
