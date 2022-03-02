@@ -3,34 +3,39 @@
   <div class="form">
     <h2>Crie sua conta</h2>
     <form>
-      <input type="text" placeholder="Nome Completo" name="nome" v-model="$v.nome.$model" :class="{error: $v.nome.$error}">
+      <input type="text" placeholder="Nome Completo" name="nome" v-model="nome" @change="$v.name.$touch()" :class="{error: $v.nome.$error}">
       <span v-if="$v.nome.$error">Este campo é requerido</span>
-      <input type="email" placeholder="Email" v-model="$v.email.$model" :class="{error: $v.email.$error}">
+      <input type="email" placeholder="Email" v-model="email" @change="$v.email.$touch()" :class="{error: $v.email.$error}">
       <span v-if="$v.email.$error">Email inválido</span>
-      <input type="text" placeholder="Cep"  v-model="$v.cep.$model" @keyup="pucharCep" :class="{error: $v.cep.$error}">
+      <input type="text" placeholder="Cep"  v-model="cep" @change="$v.cep.$touch()" @keyup="pucharCep" :class="{error: $v.cep.$error}">
       <span v-if="$v.cep.$error">Este campo é requerido</span>
       <input ty-pe="text" placeholder="Rua" disabled v-model="rua">
       <input type="text" placeholder="Cidade" disabled v-model="cidade">
       <input type="text" placeholder="Estado" disabled v-model="estado">
-      <input type="text" placeholder="Número da residência" v-model="$v.nmr.$model" :class="{error: $v.nmr.$error}">
+      <input type="text" placeholder="Número da residência" v-model="nmr" @change="$v.nmr.$touch()" :class="{error: $v.nmr.$error}">
       <span v-if="$v.nmr.$error">Este campo é requerido</span>
-      <input type="password" placeholder="Senha">
-      <span v-if="false">Este campo é requerido</span>
-      <input type="password" placeholder="Confirme sua senha" v-model="$v.senha.$model" :class="{error: $v.senha.$error}">
-      <span v-if="$v.senha.$error">Este campo é requerido</span>
-      <button class="btn" @click.prevent="criarUsuario">Criar conta</button>
+      <input type="password" placeholder="Senha" v-model="confirm_password" @change="$v.confirm_password.$touch()" :class="{error: $v.confirm_password.$error}">
+      <span v-if="$v.confirm_password.$error">Este campo é requerido</span>
+      <input type="password" placeholder="Confirme sua senha" v-model="senha" @change="$v.senha.$touch()" :class="{error: $v.senha.$error}">
+      <span v-if="$v.senha.$error">As senhas não coincidem</span>
+      <button class="btn" @click.prevent="created">Criar conta</button>
     </form>
   </div>
 </section>
 </template>
 
 <script>
-import { required } from "vuelidate/lib/validators";
+import { required , email, sameAs} from "vuelidate/lib/validators";
 import { getCep } from "@/services.js"
 import { mapFields} from "@/helpers.js";
 
 export default {
   name:"UsuarioForm",
+  data(){
+    return{
+      confirm_password:"",
+    }
+  },
   computed:{
     ...mapFields({
       fields: ["nome","email","cep","rua","bairro","cidade","estado","nmr","senha"],
@@ -40,10 +45,13 @@ export default {
   },
   validations:{
       nome: { required },
-      email: { required },
+      email: { required , email},
       cep: { required },
       nmr: { required },
-      senha: { required },
+      confirm_password: { required },
+      senha: { required , 
+      sameAs: sameAs('confirm_password')
+      },
   },
   methods:{
      pucharCep(){
@@ -57,6 +65,13 @@ export default {
         })
       }
     },
+    created(){
+      if(!this.$v.$error){
+        this.criarUsuario()
+      } else{
+        this.$v.$touch();
+      }
+    },
     async criarUsuario(){
       try{
         await this.$store.dispatch("criarUsuario", this.$store.state.usuario)
@@ -65,7 +80,7 @@ export default {
       } catch(error){
         console.log(error)
       }
-    } 
+    }, 
   }
 }
 </script>
