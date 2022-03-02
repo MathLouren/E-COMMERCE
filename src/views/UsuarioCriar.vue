@@ -66,7 +66,7 @@ export default {
       }
     },
     created(){
-      if(!this.$v.$error){
+      if(!this.$v.$invalid){
         this.criarUsuario()
       } else{
         this.$v.$touch();
