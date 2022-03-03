@@ -106,7 +106,7 @@ h2{
     flex-direction: column;
     border-radius: 5px;
     padding: 10px 20px;
-    margin-top: 20px;
+    margin: 30px 0;
     box-shadow: 0 4px 8px rgba(30, 60, 90, 0.2);
 }
 
@@ -119,6 +119,7 @@ input{
 }
 
 span{
+  text-align: start;
   color: red;
 }
 
