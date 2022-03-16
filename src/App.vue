@@ -1,132 +1,133 @@
 <template>
   <div id="app">
-   <TheHeader />
-   <main>
-     <transition mode="out-in">
-     <router-view />
-     </transition>
-   </main>
-   <TheFooter />
+    <TheHeader/>
+    <main id="main">
+      <transition mode="out-in">
+        <router-view/>
+      </transition>
+    </main>
+    <TheFooter/>
   </div>
 </template>
 
 <script>
-import TheHeader from "@/components/TheHeader.vue"
-import TheFooter from "@/components/TheFooter.vue"
+import TheHeader from "@/components/TheHeader.vue";
+import TheFooter from "@/components/TheFooter.vue";
 
-
-export default{
-  components:{
+export default {
+  components: {
     TheHeader,
     TheFooter
-  },
-}
+  }
+};
 </script>
 
-
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;500&display=swap');
-
-*{
-  margin: 0;
-  padding: 0;
+@import url('https://fonts.googleapis.com/css2? family= Roboto:wght@300;400;500 & display=swap');
+* {
   box-sizing: border-box;
-  text-decoration: none;
-  font-family: 'Roboto',Arial, Helvetica, sans-serif;
+  font-family: 'Roboto', sans-serif;
 }
 
-ul{
+body,
+ul,
+li,
+h1,
+h2,
+p {
+  padding: 0px;
+  margin: 0px;
+}
+
+ul {
   list-style: none;
 }
 
-a{
-  color: rgb(46, 46, 46);
+body {
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
+  color: rgb(51, 51, 51);
+}
+
+a {
+  color: rgb(51, 51, 51);
   text-decoration: none;
 }
 
-h2{
-  margin: 0 auto 30px auto;
-  font-size: 2.2rem;
-  color: rgb(90, 90, 90);
-}
-
-img{
+img {
   max-width: 100%;
   display: block;
 }
 
-#app{
+.btn {
+  display: block;
+  padding: 15px 30px;
+  background: rgb(100, 100, 100);
+  border-radius: 4px;
+  color: #fff;
+  text-align: center;
+  font-size: 1rem;
+  box-shadow: 0 4px 8px rgba(30, 60, 90, 0.2);
+  transition: all 0.3s;
+  border: none;
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background: rgb(51, 51, 51);
+  transform: scale(1.1);
+}
+
+#app {
   display: flex;
   min-height: 100vh;
   flex-direction: column;
 }
 
-main{
+#main {
   flex: 1;
-  width: 100%;
-  max-width: 1400px;
-  margin: auto;
 }
 
-.btn{
-  display: block;
-  padding: 13px 20px;
-  background: rgb(90, 90, 90);
-  color: #fff;
+label {
+  margin-bottom: 5px;
+}
+
+input,
+textarea {
   border-radius: 4px;
-  text-align: center;
-  font-size: 1.1rem;
-  box-shadow: 0 4px 8px rgba(30, 60, 90, 0.4);
+  border: 1px solid white;
+  padding: 15px;
+  box-shadow: 0 4px 8px rgba(30, 60, 90, 0.1);
   transition: all 0.3s;
-  border: none;
-  cursor: pointer;
-}
-.btn:hover{
-  background:rgb(124, 124, 124);
+  font-size: 1rem;
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
+  margin-bottom: 15px;
 }
 
-input{
-  display: block;
-  width: 100%;
-  max-width: 400px;
-  padding: 13px 10px;
-  font-size: 1.1rem;
+input:hover,
+input:focus,
+textarea:hover,
+textarea:focus {
   outline: none;
-  border: 2px solid rgb(124, 124, 124);
-  border-radius: 5px;
-  box-shadow: 0 4px 8px rgba(30, 60, 90, 0.1);
-  margin: 0 10px;
-  transition: .4s;
-}
-input:focus{
-  border: 2px solid rgb(46, 46, 46);
+  box-shadow: 0 6px 12px rgba(30, 60, 90, 0.2);
+  border-color: rgb(51, 51, 51);
 }
 
 .v-enter,
-.v-leave-to{
+.v-leave-to {
   opacity: 0;
 }
 
-.v-enter{
-  transform: translate3d(0,-20px,0);
+.v-enter {
+  transform: translate3d(0, -20px, 0);
 }
 
-.v-leave-to{
-  transform: translate3d(0,20px,0);
+.v-leave-to {
+  transform: translate3d(0, 20px, 0);
 }
 
 .v-enter-active,
-.v-leave-active{
+.v-leave-active {
   transition: all 0.3s;
 }
-
-form{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 15px;
-}
-
-
-
 </style>

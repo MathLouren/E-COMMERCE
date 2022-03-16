@@ -1,66 +1,56 @@
 <template>
-  <section>
-    <form class="adicionar_produto">
-      <label for="nome">Nome</label>
-      <input type="text" id="nome" name="nome" v-model="produto.nome">
-      <label for="preco">Preco (R$)</label>
-      <input type="text" id="preco" name="preco" v-model="produto.preco">
-      <label for="nome">Fotos</label>
-      <input type="file" id="fotos" name="fotos" ref="fotos">
-      <label for="nome">Descrição</label>
-      <textarea name="textarea" id="texarea" cols="30" rows="10" v-model="produto.descricao"></textarea>
-      <input class="btn" type="button" value="Adicionar Produto" @click.prevent="adicionarProduto">
-    </form>
-  </section>
+  <form class="adicionar-produto">
+    <label for="nome">Nome</label>
+    <input id="nome" name="nome" type="text" v-model="produto.nome">
+    <label for="preco">Preço (R$)</label>
+    <input id="preco" name="preco" type="number" v-model="produto.preco">
+    <label for="fotos">Fotos</label>
+    <input id="fotos" name="fotos" type="file" ref="fotos">
+    <label for="preco">Descrição</label>
+    <textarea id="preco" name="preco" v-model="produto.descricao"></textarea>
+    <input class="btn" type="button" value="Adicionar Produto" @click.prevent="adicionarProduto">
+  </form>
 </template>
 
 <script>
-import {api} from "@/services.js"
+import { api } from "@/services.js";
 
 export default {
-  name:"ProdutosAdicionar",
-  data(){
-    return{
-      produto:{
-        nome:"",
-        preco:"",
-        descricao:"",
-        fotos: null
+  name: "ProdutoAdicionar",
+  data() {
+    return {
+      produto: {
+        nome: "",
+        preco: "",
+        descricao: "",
+        fotos: null,
+        vendido: "false"
       }
-    }
+    };
   },
-  methods:{
-    formatarProduto(){
+  methods: {
+    formatarProduto() {
       this.produto.usuario_id = this.$store.state.usuario.id;
     },
-    adicionarProduto(){
-      this.formatarProduto()
-      api.post("/produto", this.produto).then(()=>{
-        this.$store.dispatch("getUsuarioProdutos")
-      })
+    adicionarProduto() {
+      this.formatarProduto();
+      api.post("/produto", this.produto).then(() => {
+        this.$store.dispatch("getUsuarioProdutos");
+      });
     }
   }
-}
+};
 </script>
 
 <style scoped>
-
-.adicionar_produto{
+.adicionar-produto {
   display: grid;
   grid-template-columns: 100px 1fr;
   align-items: center;
   margin-bottom: 60px;
 }
 
-.btn{
+.btn {
   grid-column: 2;
-}
-
-label{
-  font-size: 1.2rem;
-}
-
-textarea{
-  padding: 5px;
 }
 </style>

@@ -1,83 +1,79 @@
 <template>
-  <section>
-      <div class="form_container">
-          <div class="form">
-              <h2>Login</h2>
-              <form>
-                  <input type="text" placeholder="Email" v-model="email" @change="$v.email.$touch()" :class="{error: $v.email.$error}">
-                  <span v-if="$v.email.$error">Email inválido</span>
-                  <input type="password" placeholder="Senha" v-model="senha" @change="$v.senha.$touch()" :class="{error: $v.senha.$error}">
-                  <span v-if="$v.senha.$error">Este campo é requerido</span>
-                  <button class="btn" @click.prevent="created">Entrar</button>
-                  <router-link class="btn" to="/registrar">Novo? Crie sua conta</router-link>
-              </form>   
-          </div>
-      </div>
+  <section class="login">
+    <h1>Login</h1>
+    <form>
+      <label for="email">Email</label>
+      <input type="email" name="email" id="email" v-model="login.email">
+      <label for="senha">Senha</label>
+      <input type="password" name="senha" id="senha" v-model="login.senha">
+      <button class="btn" @click.prevent="logar">Logar</button>
+    </form>
+    <p class="perdeu">
+      <a href="/" target="_blank">Perdeu a senha? Clique aqui.</a>
+    </p>
+    <LoginCriar/>
   </section>
 </template>
 
 <script>
-import { required , email,} from "vuelidate/lib/validators";
+import LoginCriar from "@/components/LoginCriar.vue";
 
 export default {
-    components:{
-       
-    },
-    data(){
-        return{
-            email:"",
-            senha:""
-        }
-    },
-    methods:{
-        logar(){
-            this.$store.dispatch("getUsuario", this.email);
-            this.$router.push({name: "usuario"})
-        },
-        created(){
-      if(!this.$v.$invalid){
-        this.logar()
-      } else{
-        this.$v.$touch();
-      }
-    },
-    },
-    validations:{
-      email: { required , email},
-      senha: { required },
+  name: "Login",
+  components: {
+    LoginCriar
   },
-}
+  data() {
+    return {
+      login: {
+        email: "",
+        senha: ""
+      }
+    };
+  },
+  methods: {
+    logar() {
+      this.$store.dispatch("logarUsuario", this.login).then(() => {
+        this.$store.dispatch("getUsuario");
+        this.$router.push({ name: "usuario" });
+      });
+    }
+  }
+};
 </script>
 
 <style scoped>
-
-.form_container{
-    height: 90vh;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.login {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 0 20px;
 }
 
-.form{
-    border: 2px solid rgb(46, 46, 46);
-    width: 100%;
-    max-width: 420px;
-    display: flex;
-    flex-direction: column;
-    border-radius: 5px;
-    padding: 30px 20px;
-    margin-top: 20px;
-    box-shadow: 0 4px 8px rgba(30, 60, 90, 0.2);
+h1 {
+  text-align: center;
+  font-size: 2rem;
+  margin-top: 40px;
+  color: rgb(51, 51, 51);
 }
 
-.error{
-  border: 2px solid red;
+form {
+  display: grid;
 }
 
-span{
-  text-align: start;
-  color: red;
+.btn {
+  width: 100%;
+  max-width: 300px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
+.perdeu {
+  text-align: center;
+  margin: 20px auto 0 auto;
+}
+
+.perdeu a:hover {
+  color: rgb(51, 51, 51);
+  text-decoration: underline;
+}
 </style>

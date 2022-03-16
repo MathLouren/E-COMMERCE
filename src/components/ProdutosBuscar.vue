@@ -1,44 +1,54 @@
 <template>
-  <div class="buscar_container">
-      <input type="text" v-model="busca" placeholder="Buscar produtos...">
-      <img src="../assets/search.svg" alt="" @click.prevent="buscarProdutos">
-  </div>
+  <form>
+    <input name="busca" id="busca" type="text" v-model="busca" placeholder="Buscar...">
+    <input type="submit" id="lupa" value="Buscar" @click.prevent="buscarProdutos">
+  </form>
 </template>
 
 <script>
 export default {
-    data(){
-        return{
-            busca:"",
-        }
-    },
-    methods:{
-        buscarProdutos(){
-            this.$router.push({query: {q:this.busca} })
-        }
+  data() {
+    return {
+      busca: ""
+    };
+  },
+  methods: {
+    buscarProdutos() {
+      this.$router.push({ query: { q: this.busca } });
     }
-}
+  }
+};
 </script>
 
 <style scoped>
-
-input{
-    padding-right: 40px;
-    width: 100%;
-    max-width: 900px;
+form {
+  max-width: 700px;
+  margin: 30px auto 60px auto;
+  position: relative;
 }
 
-.buscar_container{
-    margin: 20px 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+#busca {
+  width: 100%;
+  padding: 20px;
+  border: none;
+  transition: 0.6s;
 }
 
-.buscar_container img{
-    margin-left: -53px;
-    cursor: pointer;
-    padding: 10px;
+#busca:focus,
+#busca:hover {
+  transform: scale(1.1);
 }
 
+#lupa {
+  width: 62px;
+  height: 62px;
+  background: url("../assets/search.svg") no-repeat center center;
+  text-indent: -150px;
+  border: none;
+  cursor: pointer;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  box-shadow: none;
+}
 </style>

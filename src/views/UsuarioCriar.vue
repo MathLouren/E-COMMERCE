@@ -99,7 +99,6 @@ h2{
 }
 
 .form{
-    border: 2px solid rgb(46, 46, 46);
     width: 100%;
     max-width: 420px;
     display: flex;
@@ -108,6 +107,10 @@ h2{
     padding: 10px 20px;
     margin: 30px 0;
     box-shadow: 0 4px 8px rgba(30, 60, 90, 0.2);
+}
+
+.btn{
+  margin: 5px 0;
 }
 
 input{

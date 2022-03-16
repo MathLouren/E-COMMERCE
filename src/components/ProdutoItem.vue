@@ -1,51 +1,40 @@
 <template>
- <div class="produto" v-if="produto">
-     <div class="info">
-         <p class="titulo">{{produto.nome}}</p>
-         <p class="preco">{{produto.preco | numeroPreco}}</p>
-     </div>
-     <slot></slot>
-     <router-link :to="{name: 'produto', params: {id: produto.id}}" class="btn">
-        <img v-if="produto.fotos" :src="produto.fotos[0].src" 
-        :alt="produto.fotos[0].titulo" class="produto-img">
-        <p>Ver produto</p>
+  <div class="produto" v-if="produto">
+    <router-link class="produto-img" :to="{name: 'produto', params: {id: produto.id}}">
+      <img v-if="produto.fotos" :src="produto.fotos[0].src" :alt="produto.fotos[0].titulo">
+      <p>Ver Produto</p>
     </router-link>
- </div>
+    <div class="info">
+      <p class="preco">{{produto.preco | numeroPreco}}</p>
+      <h2 class="titulo">{{produto.nome}}</h2>
+      <slot></slot>
+    </div>
+  </div>
 </template>
 
 <script>
 export default {
-    name: "ProdutoItem",
-    props: ["produto"]
-}
+  name: "ProdutoItem",
+  props: ["produto"]
+};
 </script>
 
 <style scoped>
-
-.btn{
-    margin: 15px 0;
+.produto {
+  display: grid;
+  grid-template-columns: minmax(100px, 200px) 1fr;
+  grid-gap: 20px;
+  margin-bottom: 40px;
+  position: relative;
 }
 
-.produto{
-    border-top: 1px solid #ccc;
-    transition: 0.4s;
-    margin: 5px 0;
-    padding: 10px 0;
+.info {
+  align-self: end;
 }
 
-.titulo{
-    font-size: 2rem;
+.produto-img {
+  border-radius: 4px;
+  overflow: hidden;
+  height: 100px;
 }
-
-.preco{
-    font-size: 1.5rem;
-    margin: 7px 0;
-}
-
-.produto-img{
-    border-radius: 4px;
-    overflow: hidden;
-    height: 100px;
-}
-
 </style>

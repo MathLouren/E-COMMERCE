@@ -1,145 +1,113 @@
 <template>
-<section>
+  <section class="produtos-container">
     <transition mode="out-in">
-    <div v-if="produtos && produtos.length" key="produtos">
-        <div class="produtos_container">
-            <div class="produtos" v-for="(produto,index) in produtos" :key="index">
-                    <router-link :to="{name: 'produto', params: {id: produto.id}}">
-                        <h2>{{produto.nome}}</h2>
-                        <img :src="produto.img" alt="">
-                        <span>{{produto.preco | numeroPreco}}</span>
-                        <p>{{produto.descricao}}</p>
-                        <button class="btn">Adicionar ao carrinho</button>
-                    </router-link>
-            </div>
+      <div v-if="produtos && produtos.length" class="produtos" key="produtos">
+        <div class="produto" v-for="(produto, index) in produtos" :key="index">
+          <router-link :to="{name: 'produto', params: {id: produto.id}}">
+            <img v-if="produto.fotos" :src="produto.fotos[0].src" :alt="produto.fotos[0].titulo">
+            <p class="preco">{{produto.preco | numeroPreco}}</p>
+            <h2 class="titulo">{{produto.nome}}</h2>
+            <p>{{produto.descricao}}</p>
+          </router-link>
         </div>
-            <div class="paginacao">
-                <ProdutosPaginar :produtosTotal="produtosTotal" 
-                :produtosPorPagina="produtosPorPagina"/>
-            </div>
-    </div>
-    <div v-else-if="produtos && produtos.length === 0" key="sem_resultado">
-        <p class="sem_resultados">Busca sem resultados. Tente outro nome 😥</p>
-    </div>
-        <div v-else key="carrengando">
-            <PaginaCarregando />
-        </div>
-        </transition>
-    </section>
+        <ProdutosPaginar :produtosTotal="produtosTotal" :produtosPorPagina="produtosPorPagina"/>
+      </div>
+      <div v-else-if="produtos && produtos.length === 0" key="sem-resultados">
+        <p class="sem-resultados">Busca sem resultados. Tente buscar outro termo.</p>
+      </div>
+      <PaginaCarregando key="carregando" v-else/>
+    </transition>
+  </section>
 </template>
 
 <script>
-import ProdutosPaginar from "@/components/ProdutosPaginar.vue"
-import { api } from "@/services.js"
-import { serialize } from "@/helpers.js"
+import ProdutosPaginar from "@/components/ProdutosPaginar.vue";
+import { api } from "@/services.js";
+import { serialize } from "@/helpers.js";
 
 export default {
-    data(){
-        return{
-            produtos:null,
-            produtosPorPagina: 6,
-            produtosTotal:0
-        }
-    },
-    components:{
-        ProdutosPaginar
-    },
-    computed:{
-        url(){
-            const query = serialize(this.$route.query)
-            return `/produto?_limit=${this.produtosPorPagina}${query}`;
-        }
-    },
-    methods:{
-        getProdutos(){
-            this.produtos = null;
-            api.get(this.url).then((r)=>{
-                this.produtosTotal = Number(r.headers["x-total-count"]);
-                return this.produtos = r.data
-            })
-        }
-    },
-    watch:{
-        url(){
-            this.getProdutos()
-        }
-    },
-    created(){
-        this.getProdutos()
+  name: "ProdutosLista",
+  components: {
+    ProdutosPaginar
+  },
+  data() {
+    return {
+      produtos: null,
+      produtosPorPagina: 9,
+      produtosTotal: 0
+    };
+  },
+  computed: {
+    url() {
+      const query = serialize(this.$route.query);
+      return `/produto?_limit=${this.produtosPorPagina}${query}`;
     }
-}
+  },
+  methods: {
+    getProdutos() {
+      this.produtos = null;
+      window.setTimeout(() => {
+        api.get(this.url).then(response => {
+          this.produtosTotal = Number(response.headers["x-total-count"]);
+          this.produtos = response.data;
+        });
+      });
+    }
+  },
+  watch: {
+    url() {
+      this.getProdutos();
+    }
+  },
+  created() {
+    this.getProdutos();
+  }
+};
 </script>
 
 <style scoped>
-
-.produtos_container{
-    max-width: 1000px;
-    min-height: 100%;
-    margin: auto;
-    margin-top: 40px;
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 30px;
+.produtos-container {
+  max-width: 1000px;
+  margin: 0 auto;
 }
 
-.produtos{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    max-width: 300px;
-    height: 420px;
-    border: 3px solid rgb(90, 90, 90);
-    padding: 10px;
-    border-radius: 5px;
-    transition: 0.3s;
-    box-shadow: 6px 6px 6px rgba(0, 0, 0, 0.2);
-}
-.produtos:hover{
-    transform: scale(1.1);
+.produtos {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 30px;
+  margin: 30px;
 }
 
-.produtos h2{
-    text-align: center;
-    font-size: 1.9rem;
-    margin:  0 0 5px 0;
+.produto {
+  box-shadow: 0 4px 8px rgba(30, 60, 90, 0.1);
+  padding: 10px;
+  background: #fff;
+  border-radius: 4px;
+  transition: all 0.2s;
 }
 
-.produtos img{
-    margin: 10px 0;
-    height: 95%;
-    width: 100%;
-    max-width: 270px;
+.produto:hover {
+  box-shadow: 0 6px 12px rgba(30, 60, 90, 0.2);
+  transform: scale(1.1);
+  position: relative;
+  z-index: 1;
 }
 
-.produtos span{
-    display: block;
-    text-align: center;
-    font-size: 1.5rem;
+.produto img {
+  border-radius: 4px;
+  margin-bottom: 20px;
 }
 
-.produtos p{
-    text-align: center;
-    margin: 10px 0 15px 0;
+.titulo {
+  margin-bottom: 10px;
 }
 
-button{
-    display: block;
-    margin: auto;
+.preco {
+  color: #e80;
+  font-weight: bold;
 }
 
-.paginacao{
-   display: flex;
-   justify-content: center;
-   margin-top: 40px;
+.sem-resultados {
+  text-align: center;
 }
-
-.sem_resultados{
-    width: 100%;
-    text-align: center;
-    font-size: 1.3rem;
-    margin-top: 40px;
-}
-
 </style>
